@@ -1,0 +1,83 @@
+"screengrab -r"
+   Print
+   
+"screengrab -f"
+   Shift+Print
+
+"screengrab -a"
+   Alt+Print
+
+"telegram-desktop"
+   Mod4+t
+
+"alacritty"
+   Mod4+Return
+
+"alacritty -t 'floatterm'"
+   Mod1+Return
+
+"brave"
+   Mod4+b
+
+"brave --incognito"
+   Mod4+Shift+b
+
+"rofi -modi drun,run -show drun -icon-theme candy-icons -theme launchpad -show-icons -font 'Hirosh 9'"
+   Mod4+q
+
+"brightnessctl set +1% & mybrightness"
+   XF86MonBrightnessUp
+
+"brightnessctl set 1%- & mybrightness"
+   XF86MonBrightnessDown
+
+"pactl set-sink-volume @DEFAULT_SINK@ -2% & myvolume"
+   XF86AudioLowerVolume
+
+"pactl set-sink-volume @DEFAULT_SINK@ +2% & myvolume"
+   XF86AudioRaiseVolume
+
+"pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+   XF86AudioMicMute
+
+"pactl set-sink-mute @DEFAULT_SINK@ toggle"
+   XF86AudioMute
+
+"setxkbmap us"
+   Mod4+F1
+
+"setxkbmap ru"
+   Mod4+F2
+
+"setxkbmap ar"
+   Mod4+F3
+
+"setxkbmap no"
+   Mod4+F4
+
+"setxkbmap se"
+   Mod4+F5
+
+"if [ $(dunstify -i ~/.local/share/icons/candy-icons/apps/scalable/preferences-system.svg --action="replyAction,reply" "Exit i3") == 2 ]; then i3-msg exit; fi"
+    Mod4+Shift+e
+
+"alacritty -e ranger"
+   Mod4+x
+
+"galculator"
+   Mod4+c
+
+"xclipboard"
+   Mod4+Shift+x
+
+"rofi -modi emoji -show emoji -theme rounded-pink-dark -font 'Electroharmonix 11'"
+    Mod4+m
+
+"if [ $(dunstify -i ~/.local/share/icons/candy-icons/apps/scalable/preferences-system-power.svg --action="replyAction,reply" "Sleep") == 2 ]; then xlock -s; fi"
+   Mod4+Shift+s
+
+"if [ $(dunstify -i ~/.local/share/icons/candy-icons/apps/scalable/system-shutdown.svg --action="replyAction,reply" "Poweroff") == 2 ]; then poweroff; fi"
+    Mod4+Shift+u
+"dunstctl close-all"
+    Mod4+Shift+Return
+

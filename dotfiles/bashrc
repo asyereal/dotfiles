@@ -1,0 +1,224 @@
+#
+# ~/.bashrc
+#
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+#PS1="\n\[\033[1;37m\]\342\224\214($(if [[ ${EUID} == 0 ]]; then echo '\[\033[01;31m\]\h'; else echo '\[\033[01;34m\]\u@\h'; fi)\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\$?\[\033[1;37m\])\342\224\200(\[\033[1;34m\]\@ \d\[\033[1;37m\])\[\033[1;37m\]\n\342\224\224\342\224\200(\[\033[1;32m\]\w\[\033[1;37m\])\342\224\200(\[\033[1;32m\]\$(ls -1 | wc -l | sed 's: ::g') files, \$(ls -sh | head -n1 | sed 's/total //')b\[\033[1;37m\])\$(parse_git_branch)\342\224\200>\[\033[0m\] "
+
+if [[ ${EUID} == 0 ]] ; then
+		sq_color="\[\033[0;31m\]"
+	else		
+		sq_color="\[\033[0;34m\]"
+fi
+
+#if [ $(acpi | awk '{print }' | sed 's/[^0-9]*//g') -lt 56 ]
+#then
+#    dunstify -u critical "Low Battery, pegi la cas waduh"
+#fi
+
+PS1="$sq_color\342\224\214\342\224\200[\[\033[01;37m\]\d | \t$sq_color]\342\224\200[\[\033[01;37m\]\u@\h$sq_color]\n\342\224\224\342\224\200\342\224\200> \[\033[01;37m\]\W$sq_color 💌\$(parse_git_branch) \[\033[01;37m\]>>\\[\\033[0m\\] "
+unset sq_color
+
+shopt -s autocd
+shopt -s lithist
+shopt -s histappend
+shopt -s cdspell
+shopt -s dirspell
+shopt -s cmdhist
+shopt -s expand_aliases
+shopt -s checkwinsize
+
+bind "set completion-ignore-case off"
+
+### SET VI MODE ###
+## Comment this line out to enable default emacs-like bindings
+# set -o vi
+# bind -m vi-command 'Control-l: clear-screen'
+# bind -m vi-insert 'Control-l: clear-screen'
+
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+# ============ Functions ==============
+
+parse_git_branch () {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+function xtheme {
+    vim ~/.local/share/icons/default/index.theme
+    vim ~/.config/alacritty/alacritty.yml
+    vim ~/.xinitrc
+    vim ~/.config/i3/config
+    vim ~/.vimrc
+    vim ~/.local/bin/xlock
+
+    startx
+}
+
+function cu {
+    local count=$1
+    if [ -z "${count}" ]; then
+        count=1
+    fi
+    local path=""
+    for i in $(seq 1 ${count}); do
+        path="${path}../"
+    done
+    cd $path
+}
+
+roulette () {
+	(( RANDOM % 6 )) && echo "No rick roll" || echo "Never gonna give you up!"
+}
+
+### ARCHIVE EXTRACTION
+# usage: ex <file>
+ex ()
+{
+  if [ -f "$1" ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+# ============ Functions ==============
+
+
+
+################ Exports ################
+
+export HOSTNAME="ArchMachine"
+export HOME="/home/asyereal"
+export VISUAL="/usr/bin/vim"
+export EDITOR=$VISUAL
+export BROWSER=/usr/bin/brave
+export PAGER=less
+export GTK_THEME=oomox-cyberpunk-neon
+export HISTCONTROL=ignoredups:erasedups
+export FCEDIT=$VISUAL
+## "vim" as manpager, thanks DT
+export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
+export PATH=${PATH}:~/.local/bin
+export OSFONTDIR="/usr/share/fonts:$DIRS/.fonts:$OSFONTDIR"
+
+export VDPAU_DRIVER="va_gl"
+export LIBVA_DRIVER_NAME="i965"
+
+################ Exports ################
+
+
+
+#-------------- Aliases -----------------
+
+### small aliases
+alias dir="dir --color=auto" 							# just
+alias vdir="vdir --color=auto" 							#   	lemme
+alias grep="grep --color=auto" 							#   have
+alias fgrep="fgrep --color=auto" 						#         some
+alias egrep="egrep --color=auto" 			 			#    colour
+alias ls="ls --color=auto" 							    # 	      UwU!
+
+alias sl="ls" 
+alias ll="ls -l"
+alias la="ls -A"
+alias l="ls"
+alias lc='ls -c'
+alias psa="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias psmem='ps auxf | sort -nr -k 4'
+alias pscpu='ps auxf | sort -nr -k 3'
+alias nap='lock -s'
+
+alias c="clear"
+alias cls='clear'
+alias r="reset && source ~/.bashrc"
+
+alias df="df -h"
+alias free="free -h"
+alias du="du -h"
+
+alias rm='rm -I'
+alias mv='mv -i' 
+
+alias jobnotify='dunstify -i ~/.local/share/icons/candy-icons/apps/scalable/preferences-system.svg -u normal "Process Completed!"'
+alias justnotify='dunstify -i ~/.local/share/icons/candy-icons/apps/scalable/preferences-system.svg -u normal'
+alias errnotify='dunstify -u critical "Error"'
+
+alias lsblk="lsblk -o 'NAME,LABEL,FSTYPE,SIZE,MOUNTPOINT,TYPE,UUID'"
+alias repicom="killall picom; picom &"
+alias merge='xrdb -merge ~/.Xresources'
+alias pacsyu='sudo pacman -Syyu && justnotify "Update Completed" || errnotify "Update Failed"'
+
+
+### programs shortcuts
+alias mksand='mkdir sandbox'
+alias s='cd sandbox'
+alias roll='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
+alias randman='man $(find /usr/share/man/man1 | shuf | head -1)'
+alias feh='feh --conversion-timeout 1'
+alias fehbg='feh --no-fehbg --bg-scale'
+alias wow='echo "Tell me why are we so blind to see, that 1 + 2 = 3"'
+alias neo='neofetch --backend w3m --xoffset 5 --yoffset 5 --size 280px --loop --source'
+
+### iwctl aliases
+alias iwscan="iwctl station wlan0 scan"
+alias iwshow="iwctl station wlan0 show"
+alias iwget="iwctl station wlan0 get-networks"
+alias iwcon="iwctl station wlan0 connect"
+alias iwdis="iwctl station wlan0 disconnect"
+
+### youtube-dl aliases
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+
+### FFMPEG Tools
+# Camera ops using ffmpeg
+alias recordmute='ffmpeg -f v4l2 -video_size 640x480 -i /dev/video0 -c:v libx264 -preset ultrafast'
+alias record='ffmpeg -f v4l2 -video_size 640x480 -i /dev/video0 -f alsa -i default -c:v libx264 -preset ultrafast -c:a aac'
+
+# ScreenCapture using ffmpeg
+alias grab="ffmpeg -video_size 1366x768 -framerate 30 -f x11grab -i :0.0 -f alsa -i default -c:v libx264rgb -crf 0 -preset ultrafast -color_range 2"
+alias grabmute="ffmpeg -video_size 1366x768 -framerate 30 -f x11grab -i :0.0 -c:v libx264rgb -crf 0 -preset ultrafast -color_range 2"
+
+### Git commands
+alias gs='git status'
+alias gb='git branch'
+alias gsh='git show'
+alias ga='git add'
+alias gcm='git commit -m'
+alias gc='git clone'
+alias gp='git pull'
+
+### --------------------- Aliases --------------------------
+
+# Init scripts
+#neofetch
+(( $((RANDOM % 2)) )) && ((( RANDOM % 2 )) && doge || cat /etc/motd) || neofetch
+#cat /etc/motd

@@ -1,0 +1,29 @@
+colorscheme default
+colorscheme cyan
+colorscheme zenburn
+colorscheme xterm-white
+colorscheme solarized-light
+colorscheme solarized-dark
+colorscheme night
+colorscheme jellybeans
+colorscheme gruvbox-warm
+colorscheme gruvbox-alt
+colorscheme gruvbox
+colorscheme green-mono-88
+colorscheme green
+colorscheme gray-88
+colorscheme dracula
+colorscheme amazon
+col
+help
+help bind
+bind common Q quit
+bind -f common q quit -i
+quit
+bind 
+bind -f common l seek +5
+bind -f common = vol +5%
+bind -f common - vol -5%
+bind -f common + vol +5%
+pl-create Hardcore
+q
