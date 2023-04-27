@@ -77,7 +77,7 @@ window:
   #
   # Override the variant of the GTK theme. Commonly supported values are `dark` and `light`.
   # Set this to `None` to use the default theme variant.
-  gtk_theme_variant: dark
+  decorations_theme_variant: dark
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -110,7 +110,10 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
+
+    #family: Source Code Pro
     family: Source Code Pro
+
     # family: CodeNewRoman Nerd Font
     # family: RobotoMono Nerd Font
     # family: Hack
@@ -168,14 +171,7 @@ font:
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
     family: Source Code Pro
-    # family: CodeNewRoman Nerd Font
-    # family: RobotoMono Nerd Font
-    # family: Hack
-    # family: JetBrains Mono
-    # family: UbuntuMono Nerd Font
-    # family: Monofuritalic Nerd Font Mono
-    # family: TerminessTTF Nerd Font
-    # family: Mononoki Nerd Font
+    # family: electroharmonix
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
@@ -582,6 +578,38 @@ schemes:
       cyan:    '0x0abdc6'
       white:   '0xd7d7d5'
 
+# COLOR SCHEMES
+schemes:
+  ### pink ###
+  pink: &pink
+    primary:
+      background: '#fd85a9'
+      foreground: '#0b0b0b'
+    cursor:
+      text: CellBackground
+      cursor: '#bafc8b'
+    selection:
+      text: CellForeground
+      background: '#000000'
+    normal:
+      black:   '#0c0c0c'
+      red:     '#a80f20'
+      green:   '#bafc8b'
+      yellow:  '#eedf4b'
+      blue:    '#145fcd'
+      magenta: '#ff36a2'
+      cyan:    '#6bd1bc'
+      white:   '#e2d7e1'
+    bright:
+      black:   '#434343'
+      red:     '#d91329'
+      green:   '#d3ffaf'
+      yellow:  '#ffef50'
+      blue:    '#0075ea'
+      magenta: '#fdd5e5'
+      cyan:    '#79ecd5'
+      white:   '#fff3fe'
+
 # Catppuccin!
   catpuccin: &catpuccin
     # Default colors
@@ -636,6 +664,7 @@ schemes:
 # *h4ck3r_blue
 # *cyber
 # *catpuccin
+# *pink
 # theming here
 colors: *cyber
 
@@ -679,7 +708,7 @@ colors: *cyber
   #save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-dynamic_title: false
+dynamic_title: true
 
 #cursor:
   # Cursor style

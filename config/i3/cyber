@@ -1,0 +1,27 @@
+bar {
+	i3bar_command i3bar --transparency
+	font pango:electroharmonix 10
+    status_command i3status -c ~/.config/i3/i3status.conf
+	position top
+	#hidden_state hide
+	#mode hide
+
+	# disable clickin on ws buttons, peasants don't deserve
+	bindsym button1 nop
+
+	colors{
+		background #000000aa
+		separator #ea00d9
+		statusline #ffffff
+
+		focused_workspace #121212 #080808 #11b7ff
+		inactive_workspace #121212 #121212 #ea00d9
+		active_workspace #121212 #090425 #ea00d9
+		urgent_workspace #121212 #090425 #ffffff
+	}
+}
+# border styles
+client.focused		#000000 #000000 #000000 #000000 #ea00d9
+client.focused_inactive	#000000 #000000 #000000 #000000 #000000
+client.unfocused	#000000 #000000 #000000 #000000 #000000
+client.urgent		#000000 #000000 #000000 #000000 #11b7ff

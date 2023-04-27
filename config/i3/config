@@ -4,7 +4,8 @@
 # Should you change your keyboard layout some time, delete
 # this file and re-run i3-config-wizard(1).
 #
-
+#include pink
+include cyber
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
@@ -86,6 +87,7 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+popup_during_fullscreen smart
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -188,45 +190,47 @@ bindsym $mod+Shift+m bar mode toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-	i3bar_command i3bar --transparency
-	font pango:electroharmonix 10
-        status_command i3status -c ~/.config/i3/i3status.conf
-	position top
-	#hidden_state hide
-	#mode hide
+#bar {
+#	i3bar_command i3bar --transparency
+#	font pango:electroharmonix 10
+#    status_command i3status -c ~/.config/i3/i3status.conf
+#	position top
+#	#hidden_state hide
+#	#mode hide
 
-	# disable clickin on ws buttons, peasants don't deserve
-	bindsym button1 nop
-
-	colors{
-		background #000000aa
-		separator #ea00d9
-		statusline #ffffff
-
-		focused_workspace #121212 #080808 #11b7ff
-		inactive_workspace #121212 #121212 #ea00d9
-		active_workspace #121212 #090425 #ea00d9
-		urgent_workspace #121212 #090425 #ffffff
-	}
-}
+#	# disable clickin on ws buttons, peasants don't deserve
+#	bindsym button1 nop
+#
+#	colors{
+#		background #000000aa
+#		separator #ea00d9
+#		statusline #ffffff
+#
+#		focused_workspace #121212 #080808 #11b7ff
+#		inactive_workspace #121212 #121212 #ea00d9
+#		active_workspace #121212 #090425 #ea00d9
+#		urgent_workspace #121212 #090425 #ffffff
+#	}
+#}
 #Needed for i3-gaps
 hide_edge_borders both
 for_window [class="^.*"] border pixel 0
 gaps inner 10
 gaps outer 5
 
-bindsym $mod+g gaps inner current plus 5
-bindsym $mod+Shift+g gaps inner current minus 5
+bindsym $mod+i gaps inner current plus 5
+bindsym $mod+Shift+i gaps inner current minus 5
 
-bindsym $mod+p gaps outer current plus 5
-bindsym $mod+Shift+p gaps outer current minus 5
+bindsym $mod+o gaps outer current plus 5
+bindsym $mod+Shift+o gaps outer current minus 5
+
+#bindsym $mod+Shift+U exit
 
 # border styles
-client.focused		#000000 #000000 #000000 #000000 #ea00d9
-client.focused_inactive	#000000 #000000 #000000 #000000 #000000
-client.unfocused	#000000 #000000 #000000 #000000 #000000
-client.urgent		#000000 #000000 #000000 #000000 #11b7ff
+#client.focused		#000000 #000000 #000000 #000000 #ea00d9
+#client.focused_inactive	#000000 #000000 #000000 #000000 #000000
+#client.unfocused	#000000 #000000 #000000 #000000 #000000
+#client.urgent		#000000 #000000 #000000 #000000 #11b7ff
 
 
 for_window [class="feh"] floating toggle
@@ -237,7 +241,11 @@ for_window [title="floatterm"] resize set 740 500
 for_window [title="galculator"] floating toggle
 for_window [title="galculator"] resize set 523 287
 
+for_window [title="askme"] floating toggle
+for_window [title="askme"] resize set 375 164
+
 for_window [title="discord"] floating toggle
+for_window [title="xclipboard"] floating toggle
 for_window [class="ffplay"] floating toggle
 for_window [class="zoom"] floating toggle
 

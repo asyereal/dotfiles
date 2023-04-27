@@ -12,10 +12,10 @@ if [[ ${EUID} == 0 ]] ; then
 		sq_color="\[\033[0;34m\]"
 fi
 
-#if [ $(acpi | awk '{print }' | sed 's/[^0-9]*//g') -lt 56 ]
-#then
-#    dunstify -u critical "Low Battery, pegi la cas waduh"
-#fi
+if [ $(acpi | awk '{print }' | sed 's/[^0-9]*//g') -lt 56 ]
+then
+    dunstify -u critical "Low Battery, pegi la cas waduh"
+fi
 
 PS1="$sq_color\342\224\214\342\224\200[\[\033[01;37m\]\d | \t$sq_color]\342\224\200[\[\033[01;37m\]\u@\h$sq_color]\n\342\224\224\342\224\200\342\224\200> \[\033[01;37m\]\W$sq_color 💌\$(parse_git_branch) \[\033[01;37m\]>>\\[\\033[0m\\] "
 unset sq_color
@@ -48,13 +48,7 @@ parse_git_branch () {
 }
 
 function xtheme {
-    vim ~/.local/share/icons/default/index.theme
-    vim ~/.config/alacritty/alacritty.yml
-    vim ~/.xinitrc
-    vim ~/.config/i3/config
-    vim ~/.vimrc
-    vim ~/.local/bin/xlock
-
+    vim ~/.local/share/icons/default/index.theme ~/.config/alacritty/alacritty.yml ~/.xinitrc ~/.config/i3/config ~/.vimrc ~/.local/bin/xlock
     startx
 }
 
@@ -112,6 +106,7 @@ export HOME="/home/asyereal"
 export VISUAL="/usr/bin/vim"
 export EDITOR=$VISUAL
 export BROWSER=/usr/bin/brave
+#export BROWSER=/home/asyereal/Apps/LibreWolf/LibreWolf.AppImage
 export PAGER=less
 export GTK_THEME=oomox-cyberpunk-neon
 export HISTCONTROL=ignoredups:erasedups
@@ -121,8 +116,8 @@ export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft
 export PATH=${PATH}:~/.local/bin
 export OSFONTDIR="/usr/share/fonts:$DIRS/.fonts:$OSFONTDIR"
 
-export VDPAU_DRIVER="va_gl"
-export LIBVA_DRIVER_NAME="i965"
+#export VDPAU_DRIVER="va_gl"
+#export LIBVA_DRIVER_NAME="i965"
 
 ################ Exports ################
 
@@ -138,6 +133,8 @@ alias fgrep="fgrep --color=auto" 						#         some
 alias egrep="egrep --color=auto" 			 			#    colour
 alias ls="ls --color=auto" 							    # 	      UwU!
 
+alias vi="vim"
+alias bat="acpi"
 alias sl="ls" 
 alias ll="ls -l"
 alias la="ls -A"
@@ -168,6 +165,7 @@ alias lsblk="lsblk -o 'NAME,LABEL,FSTYPE,SIZE,MOUNTPOINT,TYPE,UUID'"
 alias repicom="killall picom; picom &"
 alias merge='xrdb -merge ~/.Xresources'
 alias pacsyu='sudo pacman -Syyu && justnotify "Update Completed" || errnotify "Update Failed"'
+alias rebind='killall xbindkeys && xbindkeys'
 
 
 ### programs shortcuts
@@ -178,12 +176,18 @@ alias randman='man $(find /usr/share/man/man1 | shuf | head -1)'
 alias feh='feh --conversion-timeout 1'
 alias fehbg='feh --no-fehbg --bg-scale'
 alias wow='echo "Tell me why are we so blind to see, that 1 + 2 = 3"'
-alias neo='neofetch --backend w3m --xoffset 5 --yoffset 5 --size 280px --loop --source'
+alias myneo='neofetch --backend w3m --xoffset 5 --yoffset 5 --size 280px --loop --source'
+alias diskwatch="watch lsblk -o \''NAME,LABEL,FSTYPE,SIZE,MOUNTPOINT,TYPE,UUID'\'"
+alias sengine="sudo systemctl start nginx"
+alias rengine="sudo systemctl reload-or-restart nginx"
+alias kengine="sudo systemctl stop nginx"
+alias stor="sudo systemctl start tor"
+alias ktor="sudo systemctl stop tor"
 
 ### iwctl aliases
-alias iwscan="iwctl station wlan0 scan"
+alias iwscan="iwctl station wlan0 scan && iwctl station wlan0 get-networks"
 alias iwshow="iwctl station wlan0 show"
-alias iwget="iwctl station wlan0 get-networks"
+alias iwget="iwscan"
 alias iwcon="iwctl station wlan0 connect"
 alias iwdis="iwctl station wlan0 disconnect"
 
@@ -209,7 +213,7 @@ alias grabmute="ffmpeg -video_size 1366x768 -framerate 30 -f x11grab -i :0.0 -c:
 
 ### Git commands
 alias gs='git status'
-alias gb='git branch'
+alias gb='git switch'
 alias gsh='git show'
 alias ga='git add'
 alias gcm='git commit -m'
@@ -219,6 +223,5 @@ alias gp='git pull'
 ### --------------------- Aliases --------------------------
 
 # Init scripts
-#neofetch
-(( $((RANDOM % 2)) )) && ((( RANDOM % 2 )) && doge || cat /etc/motd) || neofetch
-#cat /etc/motd
+#(( $((RANDOM % 2)) )) && ((( RANDOM % 2 )) && doge || cat /etc/motd) || neofetch
+((RANDOM % 2)) && neofetch || uwufetch
