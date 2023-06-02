@@ -210,8 +210,8 @@ alias grab="ffmpeg -video_size 1366x768 -framerate 30 -f x11grab -i :0.0 -f alsa
 alias grabmute="ffmpeg -video_size 1366x768 -framerate 30 -f x11grab -i :0.0 -c:v libx264rgb -crf 0 -preset ultrafast -color_range 2"
 
 ### Git commands
-alias gs='git switch'
-alias gt='git status'
+alias gw='git switch'
+alias gs='git status'
 alias gb='git branch'
 alias gsh='git show'
 alias ga='git add'
