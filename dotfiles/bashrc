@@ -12,11 +12,6 @@ if [[ ${EUID} == 0 ]] ; then
 		sq_color="\[\033[0;34m\]"
 fi
 
-if [ $(acpi | awk '{print }' | sed 's/[^0-9]*//g') -lt 56 ]
-then
-    dunstify -u critical "Low Battery, pegi la cas waduh"
-fi
-
 PS1="$sq_color\342\224\214\342\224\200[\[\033[01;37m\]\d | \t$sq_color]\342\224\200[\[\033[01;37m\]\u@\h$sq_color]\n\342\224\224\342\224\200\342\224\200> \[\033[01;37m\]\W$sq_color 💌\$(parse_git_branch) \[\033[01;37m\]>>\\[\\033[0m\\] "
 unset sq_color
 
