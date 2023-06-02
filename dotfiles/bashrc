@@ -178,10 +178,13 @@ alias fehbg='feh --no-fehbg --bg-scale'
 alias wow='echo "Tell me why are we so blind to see, that 1 + 2 = 3"'
 alias myneo='neofetch --backend w3m --xoffset 5 --yoffset 5 --size 280px --loop --source'
 alias diskwatch="watch lsblk -o \''NAME,LABEL,FSTYPE,SIZE,MOUNTPOINT,TYPE,UUID'\'"
+
 alias sengine="sudo systemctl start nginx"
 alias rengine="sudo systemctl reload-or-restart nginx"
 alias kengine="sudo systemctl stop nginx"
+
 alias stor="sudo systemctl start tor"
+alias restor="sudo systemctl reload-or-restart tor"
 alias ktor="sudo systemctl stop tor"
 
 ### iwctl aliases
@@ -212,13 +215,15 @@ alias grab="ffmpeg -video_size 1366x768 -framerate 30 -f x11grab -i :0.0 -f alsa
 alias grabmute="ffmpeg -video_size 1366x768 -framerate 30 -f x11grab -i :0.0 -c:v libx264rgb -crf 0 -preset ultrafast -color_range 2"
 
 ### Git commands
-alias gs='git status'
-alias gb='git switch'
+alias gs='git switch'
+alias gt='git status'
+alias gb='git branch'
 alias gsh='git show'
 alias ga='git add'
 alias gcm='git commit -m'
 alias gc='git clone'
 alias gp='git pull'
+alias gl='git log'
 
 ### --------------------- Aliases --------------------------
 
